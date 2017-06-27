@@ -1,5 +1,5 @@
 class User:
-	"""Generic user class"""
+    """Generic user class"""
 
-	def __init__(self):
-		self._name = 'User'
+    def __init__(self):
+        self._name = 'User'
