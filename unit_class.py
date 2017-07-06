@@ -77,7 +77,12 @@ class Mage(Unit):
 
 
 def main():
-    pass
+    unit_one = Warrior()
+    unit_two = Archer()
+    unit_three = Mage()
+    unit_one.clash(unit_two)
+    unit_three.clash(unit_one)
+    unit_two.clash(unit_one)
 
 if __name__ == '__main__':
     main()
