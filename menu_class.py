@@ -3,10 +3,6 @@ import sys
 
 class Menu:
     """Menu class
-    1 Player
-    2 Players
-    Configuration
-    Exit
     """
 
     def __init__(self):
@@ -14,7 +10,7 @@ class Menu:
             1: self.one_player_game,
             2: self.two_player_game,
             3: self.configurations,
-            0: self.quite
+            0: self.quit
         }
 
     def display_menu(self):
@@ -25,7 +21,7 @@ class Menu:
         2. Two-player game
         3. Configurations
         
-        0. Quite
+        0. Quit
         """)
 
     def get_menu_choice(self):
@@ -44,24 +40,25 @@ class Menu:
     def manage_menu(self):
         """Display & Correlate"""
 
-        # need noexit var to while loop for backing into previous menu after end activity
-        # in selected option -- ???
-        self.display_menu()
-        choice = self.get_menu_choice()
-        option = self._options.get(choice)
-        option()
+        while True:
+            self.display_menu()
+            choice = self.get_menu_choice()
+            option = self._options.get(choice)
+            option()
 
 
     def one_player_game(self):
+        # test str
         print('this is one-player game with computer')
 
     def two_player_game(self):
+        # test str
         print('this is the game with your friend')
 
     def configurations(self):
         pass
 
-    def quite(self):
+    def quit(self):
         # exit the game
         print('Goodbye!')
         sys.exit(0)
