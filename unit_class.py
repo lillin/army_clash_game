@@ -39,6 +39,10 @@ class Warrior(Unit):
             unit._hp -= self._damage
         self.is_alive(unit)
 
+    def print_info(self):
+        # print info about Warrior
+        print('Has 2 health point, ')
+
 
 class Archer(Unit):
     """Child class of Unit class

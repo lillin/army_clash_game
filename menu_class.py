@@ -56,6 +56,8 @@ class Menu:
         print('this is the game with your friend')
 
     def configurations(self):
+        # ability to save user army into .txt
+        # ability to download saved army
         pass
 
     def quit(self):
