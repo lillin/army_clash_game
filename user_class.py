@@ -16,28 +16,29 @@ class User:
         print('Enter a to add Archer')
         print('Enter m to add Mage')
 
-    def get_user_unit(self):
-        # get units from user
-        # return 1 unit
+    def unit_validator(self, units):
+        try:
+            if all(i in 'wam' for i in units):
+                return True
+            else:
+                print('Your letter not w or a or m')
+                return False
+        except ValueError:
+            print('Your symbols is wrong')
+            return False
+
+    def get_user_units(self, user_army):
+        # get full row with len == _max_units_in_the_row
+        units_in_row = user_army._max_unit_in_a_row
         valid = False
         while not valid:
-            try:
-                unit = input('Enter a letter: ')
-                if unit in ('w', 'a', 'm'):
-                    valid = True
-                else:
-                    print('Your value is not valid')
-            except ValueError:
-                print('Your value is not valid')
-        return unit
-
-    def create_row(self, user_army):
-        # make 1 row getting unit from user
-        row = ''
-        while len(row) != user_army._max_unit_in_a_row:
-            row += self.get_user_unit()
-        print(row)
-        return row
+            units = input('Enter you {0} letters: '.format(units_in_row))
+            print(units)
+            if len(units) == units_in_row:
+                valid = self.unit_validator(units)
+            else:
+                print('You quantity of units is too big or too small, try again')
+        return units
 
     def create_army(self):
         # User should be prompted to fill army line by line. (Depends on 'max_row' field)
@@ -47,11 +48,11 @@ class User:
         count = 0
         self.display_info()
         while count != user_army._max_row:
-            # create row
-            row = self.create_row(user_army)
+            row = self.get_user_units(user_army)
             user_army._army.append(row)
             count += 1
         print(user_army._army)
+
 
 def main():
     test_user = User()
