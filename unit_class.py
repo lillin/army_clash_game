@@ -9,6 +9,9 @@ class Unit:
         self._type = 'Unit'
         self._status = True
 
+    def __repr__(self):
+        return repr(self._type)
+
     def is_alive(self, unit):
         # check unit status
         if unit._hp == 0:

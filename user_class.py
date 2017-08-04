@@ -24,7 +24,7 @@ class User:
                 print('Your letter not w or a or m')
                 return False
         except ValueError:
-            print('Your symbols is wrong')
+            print('Your symbols are wrong')
             return False
 
     def get_user_units(self, user_army):
@@ -37,8 +37,19 @@ class User:
             if len(units) == units_in_row:
                 valid = self.unit_validator(units)
             else:
-                print('You quantity of units is too big or too small, try again')
+                print('Your quantity of units is too big or too small, try again')
         return units
+
+    def instantiating_unit(self, row):
+        units_list = []
+        for i in row:
+            if i == 'w':
+                units_list.append(Warrior())
+            elif i == 'a':
+                units_list.append(Archer())
+            elif i == 'm':
+                units_list.append(Mage())
+        return units_list
 
     def create_army(self):
         # User should be prompted to fill army line by line. (Depends on 'max_row' field)
@@ -48,8 +59,10 @@ class User:
         count = 0
         self.display_info()
         while count != user_army._max_row:
+            # get row with special func
             row = self.get_user_units(user_army)
-            user_army._army.append(row)
+            # we need to instantiating units in Army._army instead of appending user string there!
+            user_army._army.append(self.instantiating_unit(row))
             count += 1
         print(user_army._army)
 
