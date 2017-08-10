@@ -55,7 +55,9 @@ class User:
         # User should be prompted to fill army line by line. (Depends on 'max_row' field)
         # User input should be like "aaw". (Depends on '_max_unit_in_a_row ' field)
         # we need to instantiating Army
-        user_army = Army()
+        # NEED TO ASK USER ABOUT ARMY SQUARE !!!
+        # and pass it into user_army
+        user_army = Army(5, 4)
         count = 0
         self.display_info()
         while count != user_army._max_row:
@@ -64,12 +66,12 @@ class User:
             # we need to instantiating units in Army._army instead of appending user string there!
             user_army._army.append(self.instantiating_unit(row))
             count += 1
-        print(user_army._army)
+        return user_army
 
 
 def main():
     test_user = User()
-    test_user.create_army()
+    test_user.create_army().print_army()
 
 
 if __name__ == '__main__':
