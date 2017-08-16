@@ -57,7 +57,7 @@ class User:
         # we need to instantiating Army
         # NEED TO ASK USER ABOUT ARMY SQUARE !!!
         # and pass it into user_army
-        user_army = Army(5, 4)
+        user_army = Army()
         count = 0
         self.display_info()
         while count != user_army._max_row:
@@ -71,7 +71,7 @@ class User:
 
 def main():
     test_user = User()
-    test_user.create_army().print_army()
+    test_user.create_army().is_alive()
 
 
 if __name__ == '__main__':
