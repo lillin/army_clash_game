@@ -1,5 +1,3 @@
-
-
 class Unit:
     """Generic unit class"""
 
@@ -7,22 +5,19 @@ class Unit:
         self._hp = hp
         self._damage = damage
         self._type = 'Unit'
-        self._status = True
 
     def __repr__(self):
         return repr(self._type)
 
-    def is_alive(self, unit):
-        # check unit status
-        if unit._hp == 0:
-            unit._status = False
-            print('Your unit is dead')
-        else:
-            print('Your unit is alive')
+    def is_alive(self):
+        return self._hp > 0
 
     def clash(self, unit):
-        unit._hp -= self._damage
-        self.is_alive(unit)
+        self.clash_back(unit)
+        unit.clash_back(self)
+
+    def clash_back(self, unit):
+        """abstract"""
 
 
 class Warrior(Unit):
@@ -34,13 +29,12 @@ class Warrior(Unit):
         super().__init__()
         self._type = 'Warrior'
 
-    def clash(self, unit):
+    def clash_back(self, unit):
         if unit._type == 'Archer':
             # double damage
             unit._hp -= self._damage * 2
         else:
             unit._hp -= self._damage
-        self.is_alive(unit)
 
     def print_info(self):
         # print info about Warrior
@@ -56,13 +50,12 @@ class Archer(Unit):
         super().__init__()
         self._type = 'Archer'
 
-    def clash(self, unit):
+    def clash_back(self, unit):
         if unit._type == 'Mage':
             # double damage
             unit._hp -= self._damage * 2
         else:
             unit._hp -= self._damage
-        self.is_alive(unit)
 
 
 class Mage(Unit):
@@ -74,13 +67,12 @@ class Mage(Unit):
         super().__init__()
         self._type = 'Mage'
 
-    def clash(self, unit):
+    def clash_back(self, unit):
         if unit._type == 'Warrior':
             # double damage
             unit._hp -= self._damage * 2
         else:
             unit._hp -= self._damage
-        self.is_alive(unit)
 
 
 def main():
@@ -90,6 +82,10 @@ def main():
     unit_one.clash(unit_two)
     unit_three.clash(unit_one)
     unit_two.clash(unit_one)
+    print(unit_one._hp)
+    print(unit_two._hp)
+    print(unit_three._hp)
+
 
 if __name__ == '__main__':
     main()
