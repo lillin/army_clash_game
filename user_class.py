@@ -1,5 +1,6 @@
 from army_class import *
 
+# need method to ask user about size of his army
 
 class User:
     """Generic user class
@@ -52,18 +53,12 @@ class User:
         return units_list
 
     def create_army(self):
-        # User should be prompted to fill army line by line. (Depends on 'max_row' field)
-        # User input should be like "aaw". (Depends on '_max_unit_in_a_row ' field)
-        # we need to instantiating Army
-        # NEED TO ASK USER ABOUT ARMY SQUARE !!!
-        # and pass it into user_army
+        # need to ask user about army size here!
         user_army = Army()
         count = 0
         self.display_info()
         while count != user_army._max_row:
-            # get row with special func
             row = self.get_user_units(user_army)
-            # we need to instantiating units in Army._army instead of appending user string there!
             user_army._army.append(self.instantiating_unit(row))
             count += 1
         return user_army
