@@ -3,6 +3,7 @@ from user_class import *
 from util_class import *
 from army_class import *
 
+
 class Menu:
     """Menu class
     """
@@ -48,7 +49,6 @@ Please select an option
             option = self._options.get(choice)
             option()
             input('Press Enter to continue...')
-
 
     def one_player_game(self):
         army_one = User().create_army()
