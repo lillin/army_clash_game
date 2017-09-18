@@ -1,5 +1,4 @@
 import sys
-import msvcrt
 from user_class import *
 from util_class import *
 from army_class import *
@@ -52,7 +51,6 @@ Please select an option
 
 
     def one_player_game(self):
-        # game with automatically generated army
         army_one = User().create_army()
         army_two = Army()
         army_two._army = Util().generate_army(army_one._max_row, army_one._max_unit_in_a_row)
@@ -85,7 +83,6 @@ Please select an option
         pass
 
     def quit(self):
-        # exit the game
         print('Goodbye!')
         sys.exit(0)
 

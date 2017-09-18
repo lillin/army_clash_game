@@ -1,6 +1,5 @@
 from army_class import *
 
-# need method to ask user about size of his army
 
 class User:
     """Generic user class
@@ -53,7 +52,6 @@ class User:
         return units_list
 
     def create_army(self):
-        # need to ask user about army size here!
         user_army = Army()
         count = 0
         self.display_info()
