@@ -1,5 +1,8 @@
 import sys
-
+import msvcrt
+from user_class import *
+from util_class import *
+from army_class import *
 
 class Menu:
     """Menu class
@@ -15,13 +18,13 @@ class Menu:
 
     def display_menu(self):
         print("""
-        Please select an option
+Please select an option
         
-        1. One-player game
-        2. Two-player game
-        3. Configurations
+1. One-player game
+2. Two-player game
+3. Configurations
         
-        0. Quit
+0. Quit
         """)
 
     def get_menu_choice(self):
@@ -45,15 +48,36 @@ class Menu:
             choice = self.get_menu_choice()
             option = self._options.get(choice)
             option()
+            input('Press Enter to continue...')
 
 
     def one_player_game(self):
-        # test str
-        print('this is one-player game with computer')
+        # game with automatically generated army
+        army_one = User().create_army()
+        army_two = Army()
+        army_two._army = Util().generate_army(army_one._max_row, army_one._max_unit_in_a_row)
+        print()
+        print('Your army: ')
+        army_one.print_army()
+        print()
+        print('Computer\'s army: ')
+        army_two.print_army()
+        print()
+        army_one.clash(army_two)
+        print()
 
     def two_player_game(self):
-        # test str
-        print('this is the game with your friend')
+        army_one = User().create_army()
+        army_two = User().create_army()
+        print()
+        print('User one army: ')
+        army_one.print_army()
+        print()
+        print('User two army: ')
+        army_two.print_army()
+        print()
+        print(army_one.clash(army_two))
+        print()
 
     def configurations(self):
         # ability to save user army into .txt

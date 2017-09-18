@@ -16,7 +16,14 @@ class Army:
         for row_index, row in enumerate(self._army):
             for col_index, unit in enumerate(row):
                 unit.clash(army._army[row_index][col_index])
-        return self.is_alive(), army.is_alive()
+        winner = self.is_alive(), army.is_alive()
+        print('{0}:{1}'.format(winner[0], winner[1]))
+        if winner[0] > winner[1]:
+            print('Player one is a winner!')
+        elif winner[1] > winner[0]:
+            print('Player two is a winner!')
+        elif winner[0] == winner[1]:
+            print('Draw!')
 
     def is_alive(self):
         # return qty of alive units
@@ -25,7 +32,7 @@ class Army:
             for unit in i:
                 if unit.is_alive():
                     count += 1
-        print('There are {qty} alive units in your army.'.format(qty=count))
+        return count
 
     def print_army(self):
         # initially looks like this:
@@ -48,3 +55,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
